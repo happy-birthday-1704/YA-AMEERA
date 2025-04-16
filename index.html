@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --lavender-light: #e6e6fa;
+            --lavender-medium: #b19cd9;
+            --lavender-dark: #9370db;
+            --white: #ffffff;
+            --pink: #ffb6c1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--lavender-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: linear-gradient(135deg, var(--white) 25%, transparent 25%),
+                            linear-gradient(225deg, var(--white) 25%, transparent 25%),
+                            linear-gradient(45deg, var(--white) 25%, transparent 25%),
+                            linear-gradient(315deg, var(--white) 25%, var(--lavender-light) 25%);
+            background-position: 40px 0, 40px 0, 0 0, 0 0;
+            background-size: 80px 80px;
+            background-repeat: repeat;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background-color: var(--lavender-medium);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            background-color: var(--lavender-medium);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .birthday-greeting {
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: var(--lavender-dark);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--lavender-medium);
+            margin-bottom: 30px;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .message p {
+            margin-bottom: 15px;
+        }
+
+        .balloon-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0 40px;
+        }
+
+        .balloon {
+            width: 40px;
+            height: 50px;
+            background-color: var(--lavender-medium);
+            border-radius: 50%;
+            position: relative;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .balloon:nth-child(2) {
+            background-color: var(--lavender-dark);
+            animation-delay: 0.5s;
+        }
+
+        .balloon:nth-child(3) {
+            background-color: var(--pink);
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(4) {
+            background-color: var(--lavender-medium);
+            animation-delay: 1.5s;
+        }
+
+        .balloon:nth-child(5) {
+            background-color: var(--lavender-dark);
+            animation-delay: 2s;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 60px;
+            background-color: #ccc;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cake {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 40px auto;
+        }
+
+        .plate {
+            position: absolute;
+            width: 110px;
+            height: 10px;
+            background-color: #e0e0e0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .cake-bottom {
+            position: absolute;
+            width: 100px;
+            height: 30px;
+            background-color: var(--lavender-medium);
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px 10px 3px 3px;
+            z-index: 2;
+        }
+
+        .cake-middle {
+            position: absolute;
+            width: 90px;
+            height: 30px;
+            background-color: var(--lavender-light);
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px 10px 3px 3px;
+            z-index: 3;
+        }
+
+        .cake-top {
+            position: absolute;
+            width: 80px;
+            height: 30px;
+            background-color: var(--white);
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px 10px 3px 3px;
+            z-index: 4;
+        }
+
+        .candle {
+            position: absolute;
+            width: 8px;
+            height: 30px;
+            background-color: #ff9999;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+
+        .flame {
+            position: absolute;
+            width: 15px;
+            height: 30px;
+            background: linear-gradient(to bottom, #ffcc00, #ff9900);
+            border-radius: 50% 50% 20% 20%;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 6;
+            animation: flicker 1s ease-in-out infinite;
+        }
+
+        .btn {
+            background-color: var(--lavender-dark);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(147, 112, 219, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(147, 112, 219, 0.4);
+        }
+
+        .gift {
+            display: none;
+            margin-top: 40px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .heart-container {
+            height: 150px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .love-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--lavender-dark);
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--lavender-medium);
+            margin-top: 30px;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                opacity: 1;
+                transform: translateX(-50%) scaleY(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateX(-50%) scaleY(0.9);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="birthday-greeting">
+                <h1 class="title">Happy Birthday</h1>
+                <h2 class="subtitle">to my amazing princess</h2>
+                
+                <div class="message">
+                    <p>On this special day, I wish you joy equal to the love in my heart for you.</p>
+                    <p>Your smile brightens my darkest days, and your love fills my heart with joy.</p>
+                    <p>I'm so grateful to have you in my life.</p>
+                </div>
+                
+                <div class="balloon-container">
+                    <div class="balloon"></div>
+                    <div class="balloon"></div>
+                    <div class="balloon"></div>
+                    <div class="balloon"></div>
+                    <div class="balloon"></div>
+                </div>
+
+                <div class="cake">
+                    <div class="plate"></div>
+                    <div class="cake-bottom"></div>
+                    <div class="cake-middle"></div>
+                    <div class="cake-top"></div>
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+                </div>
+
+                <button id="birthdayBtn" class="btn">Click For Your Gift</button>
+                
+                <div id="gift" class="gift">
+                    <div class="heart-container"></div>
+                    <p class="love-message">I love you more than words can express. You mean everything to me.</p>
+                    <p class="signature">With all my love,<br>Nousheen Farhath</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Button click event
+            const birthdayBtn = document.getElementById('birthdayBtn');
+            const gift = document.getElementById('gift');
+            const heartContainer = document.querySelector('.heart-container');
+            
+            // Create falling confetti on page load
+            createConfetti();
+            
+            // Button click event to reveal the gift
+            birthdayBtn.addEventListener('click', () => {
+                // Hide the button
+                birthdayBtn.style.display = 'none';
+                
+                // Show the gift with a fade-in effect
+                gift.style.display = 'block';
+                
+                // Small delay for the opacity transition
+                setTimeout(() => {
+                    gift.style.opacity = '1';
+                }, 50);
+                
+                // Create hearts in the heart container
+                createHearts();
+                
+                // Play birthday song
+                playBirthdaySong();
+            });
+            
+            // Function to create hearts
+            function createHearts() {
+                for (let i = 0; i < 15; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.style.left = `${Math.random() * 100}%`;
+                    heart.style.animationDuration = `${Math.random() * 2 + 3}s`;
+                    heart.style.animationDelay = `${Math.random() * 2}s`;
+                    heartContainer.appendChild(heart);
+                }
+                
+                // Add CSS for hearts
+                const style = document.createElement('style');
+                style.textContent = `
+                    .heart {
+                        position: absolute;
+                        bottom: 0;
+                        width: 30px;
+                        height: 30px;
+                        background-color: #ff6b81;
+                        transform: rotate(45deg);
+                        opacity: 0;
+                        animation: floatHeart 4s ease-in-out forwards;
+                    }
+                    
+                    .heart::before,
+                    .heart::after {
+                        content: "";
+                        position: absolute;
+                        width: 30px;
+                        height: 30px;
+                        background-color: #ff6b81;
+                        border-radius: 50%;
+                    }
+                    
+                    .heart::before {
+                        top: -15px;
+                        left: 0;
+                    }
+                    
+                    .heart::after {
+                        top: 0;
+                        left: -15px;
+                    }
+                    
+                    @keyframes floatHeart {
+                        0% {
+                            transform: translateY(0) rotate(45deg) scale(0);
+                            opacity: 0;
+                        }
+                        20% {
+                            opacity: 0.8;
+                        }
+                        80% {
+                            opacity: 0.8;
+                        }
+                        100% {
+                            transform: translateY(-120px) rotate(45deg) scale(1);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Function to create confetti
+            function createConfetti() {
+                const confettiContainer = document.createElement('div');
+                confettiContainer.className = 'confetti-container';
+                document.body.appendChild(confettiContainer);
+                
+                // Add CSS for confetti
+                const style = document.createElement('style');
+                style.textContent = `
+                    .confetti-container {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        pointer-events: none;
+                        z-index: -1;
+                    }
+                    
+                    .confetti {
+                        position: absolute;
+                        width: 10px;
+                        height: 10px;
+                        background-color: var(--lavender-medium);
+                        opacity: 0.7;
+                        animation: fall linear forwards;
+                    }
+                    
+                    @keyframes fall {
+                        0% {
+                            transform: translateY(-100px) rotate(0deg);
+                            opacity: 0;
+                        }
+                        10% {
+                            opacity: 0.7;
+                        }
+                        100% {
+                            transform: translateY(calc(100vh + 100px)) rotate(360deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                const colors = ['#e6e6fa', '#b19cd9', '#9370db', '#ffffff', '#ffb6c1'];
+                const shapes = ['square', 'circle', 'triangle', 'heart'];
+                
+                // Create 100 confetti pieces
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    
+                    // Random properties
+                    const size = Math.random() * 10 + 5;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                    const left = Math.random() * 100;
+                    const animationDuration = Math.random() * 3 + 3;
+                    const animationDelay = Math.random() * 5;
+                    
+                    // Apply styles
+                    confetti.style.width = `${size}px`;
+                    confetti.style.height = `${size}px`;
+                    confetti.style.backgroundColor = color;
+                    confetti.style.left = `${left}%`;
+                    confetti.style.animationDuration = `${animationDuration}s`;
+                    confetti.style.animationDelay = `${animationDelay}s`;
+                    
+                    // Apply different shapes
+                    if (shape === 'circle') {
+                        confetti.style.borderRadius = '50%';
+                    } else if (shape === 'triangle') {
+                        confetti.style.width = '0';
+                        confetti.style.height = '0';
+                        confetti.style.backgroundColor = 'transparent';
+                        confetti.style.borderLeft = `${size/2}px solid transparent`;
+                        confetti.style.borderRight = `${size/2}px solid transparent`;
+                        confetti.style.borderBottom = `${size}px solid ${color}`;
+                    } else if (shape === 'heart') {
+                        confetti.style.backgroundColor = 'transparent';
+                        confetti.style.width = `${size}px`;
+                        confetti.style.height = `${size}px`;
+                        confetti.style.transform = 'rotate(45deg)';
+                        confetti.style.position = 'relative';
+                        
+                        const before = document.createElement('div');
+                        before.style.position = 'absolute';
+                        before.style.width = `${size}px`;
+                        before.style.height = `${size}px`;
+                        before.style.backgroundColor = color;
+                        before.style.borderRadius = '50%';
+                        before.style.top = `-${size/2}px`;
+                        
+                        const after = document.createElement('div');
+                        after.style.position = 'absolute';
+                        after.style.width = `${size}px`;
+                        after.style.height = `${size}px`;
+                        after.style.backgroundColor = color;
+                        after.style.borderRadius = '50%';
+                        after.style.left = `-${size/2}px`;
+                        
+                        confetti.appendChild(before);
+                        confetti.appendChild(after);
+                    }
+                    
+                    confettiContainer.appendChild(confetti);
+                }
+            }
+            
+            // Function to play birthday song (a simple note sequence)
+            function playBirthdaySong() {
+                if (typeof AudioContext !== 'undefined' || typeof webkitAudioContext !== 'undefined') {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    const audioCtx = new AudioCtx();
+                    
+                    // Happy Birthday notes (simple version)
+                    const notes = [
+                        { note: 'G4', duration: 0.25 },
+                        { note: 'G4', duration: 0.25 },
+                        { note: 'A4', duration: 0.5 },
+                        { note: 'G4', duration: 0.5 },
+                        { note: 'C5', duration: 0.5 },
+                        { note: 'B4', duration: 1 },
+                        { note: 'G4', duration: 0.25 },
+                        { note: 'G4', duration: 0.25 },
+                        { note: 'A4', duration: 0.5 },
+                        { note: 'G4', duration: 0.5 },
+                        { note: 'D5', duration: 0.5 },
+                        { note: 'C5', duration: 1 },
+                        { note: 'G4', duration: 0.25 },
+                        { note: 'G4', duration: 0.25 },
+                        { note: 'G5', duration: 0.5 },
+                        { note: 'E5', duration: 0.5 },
+                        { note: 'C5', duration: 0.5 },
+                        { note: 'B4', duration: 0.5 },
+                        { note: 'A4', duration: 0.5 },
+                        { note: 'F5', duration: 0.25 },
+                        { note: 'F5', duration: 0.25 },
+                        { note: 'E5', duration: 0.5 },
+                        { note: 'C5', duration: 0.5 },
+                        { note: 'D5', duration: 0.5 },
+                        { note: 'C5', duration: 1 }
+                    ];
+                    
+                    // Frequency map
+                    const frequencyMap = {
+                        'C4': 261.63, 'D4': 293.66, 'E4': 329.63, 'F4': 349.23, 'G4': 392.00, 'A4': 440.00, 'B4': 493.88,
+                        'C5': 523.25, 'D5': 587.33, 'E5': 659.25, 'F5': 698.46, 'G5': 783.99, 'A5': 880.00, 'B5': 987.77
+                    };
+                    
+                    // Play the notes with a delay
+                    let time = audioCtx.currentTime;
+                    
+                    notes.forEach(note => {
+                        const oscillator = audioCtx.createOscillator();
+                        const gainNode = audioCtx.createGain();
+                        
+                        oscillator.type = 'sine';
+                        oscillator.frequency.value = frequencyMap[note.note];
+                        
+                        gainNode.gain.setValueAtTime(0, time);
+                        gainNode.gain.linearRampToValueAtTime(0.5, time + 0.05);
+                        gainNode.gain.linearRampToValueAtTime(0, time + note.duration - 0.05);
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioCtx.destination);
+                        
+                        oscillator.start(time);
+                        oscillator.stop(time + note.duration);
+                        
+                        time += note.duration;
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
